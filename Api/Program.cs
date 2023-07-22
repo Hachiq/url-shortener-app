@@ -1,14 +1,21 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Api.Areas.Identity.Data;
+using Api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var identityConnectionString = builder.Configuration.
     GetConnectionString("AppIdentityDbContextConnection") 
     ?? throw new InvalidOperationException("Connection string 'AppIdentityDbContextConnection' not found.");
+var appConnectionString = builder.Configuration.
+    GetConnectionString("AppDbContextConnection")
+    ?? throw new InvalidOperationException("Connection string 'AppDbContextConnection' not found.");
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(identityConnectionString));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(appConnectionString));
 
 builder.Services.AddDefaultIdentity<AppIdentityUser>(options => {
     options.SignIn.RequireConfirmedAccount = false;
