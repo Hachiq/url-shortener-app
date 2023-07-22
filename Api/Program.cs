@@ -10,7 +10,10 @@ var identityConnectionString = builder.Configuration.
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
     options.UseSqlServer(identityConnectionString));
 
-builder.Services.AddDefaultIdentity<AppIdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<AppIdentityUser>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.AllowedUserNameCharacters = builder.Configuration.GetSection("AllowedUsernameCharacters").Value;
+    })
     .AddEntityFrameworkStores<AppIdentityDbContext>();
 
 // Add services to the container.
