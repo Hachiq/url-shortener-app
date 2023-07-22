@@ -1,0 +1,18 @@
+﻿@using Api.Models;
+@model AboutViewModel
+
+<h2>Project Description</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    @using (Html.BeginForm("Edit", "About", FormMethod.Post))
+    {
+        @Html.TextAreaFor(m => m.Description, new { rows = 4, cols = 80, @class="text-area" })
+        <br />
+        <input class="btn btn-primary btn-submit" type="submit" value="Save" />
+    }
+}
+else
+{
+    <p>@Model.Description</p>
+}

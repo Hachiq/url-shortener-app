@@ -16,3 +16,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.text-area {
+    padding: 12px 10px;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+}
+
+.btn-submit {
+    width: 100px;
+}

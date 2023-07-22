@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Api.Areas.Identity.Data;
 using Api.Data;
+using Api.Services.About;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +21,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDefaultIdentity<AppIdentityUser>(options => {
     options.SignIn.RequireConfirmedAccount = false;
     options.User.AllowedUserNameCharacters = builder.Configuration.GetSection("AllowedUsernameCharacters").Value;
-    })
+})
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppIdentityDbContext>();
+
+builder.Services.AddScoped<IAboutService, AboutService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -40,7 +44,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
