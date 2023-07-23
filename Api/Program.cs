@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Api.Areas.Identity.Data;
 using Api.Data;
 using Api.Services.About;
+using Api.Services.UrlService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddDefaultIdentity<AppIdentityUser>(options => {
     .AddEntityFrameworkStores<AppIdentityDbContext>();
 
 builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddScoped<IUrlService, UrlService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
