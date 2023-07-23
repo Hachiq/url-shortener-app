@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+constructor(){}
+
   onRedirect(): void {
     window.location.href = 'https://localhost:7027';
   }

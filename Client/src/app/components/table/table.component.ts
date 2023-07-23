@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Url } from 'src/app/models/url';
 import { TokenService } from 'src/app/services/token.service';
 import { UrlService } from 'src/app/services/url.service';
@@ -12,7 +13,8 @@ export class TableComponent {
   urls: Url[] = [];
 
   constructor(private urlService: UrlService,
-    private tokenService: TokenService){}
+    private tokenService: TokenService,
+    private router: Router){}
 
   ngOnInit(): void {
     this.loadUrls();
@@ -30,6 +32,10 @@ export class TableComponent {
 
   navigateToLongUrl(url: Url): void {
     window.location.href = url.longUrl;
+  }
+
+  goToUrlInfo(id: number) {
+    this.router.navigate(['/info', id]);
   }
 
   getDisplayNumber(index: number): number {

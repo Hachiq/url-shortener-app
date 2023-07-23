@@ -7,18 +7,17 @@
         <thead>
             <tr>
                 <th scope="col" style="min-width: 50px;">#</th>
+                <th scope="col">Long url</th>
                 <th scope="col">Short url</th>
-                <th scope="col" style="min-width: 130px;">Created by</th>
-                <th scope="col" style="min-width: 130px;">Created at</th>
-                <th *ngIf="isAuthorized()"></th>
+                <th *ngIf="isAuthorized()" colspan="2" scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let url of urls; let i = index">
                 <th scope="row">{{getDisplayNumber(i)}}</th>
+                <td><a>{{url.longUrl}}</a></td>
                 <td><a (click)="navigateToLongUrl(url)" target="_blank" class="short-url-link">{{url.shortUrl}}</a></td>
-                <td>{{url.createdBy}}</td>
-                <td>{{url.createdAt}}</td>
+                <td *ngIf="isAuthorized()"><button (click)="goToUrlInfo(url.id)" class="btn btn-info">Info</button></td>
                 <td *ngIf="isAuthorized()"><button *ngIf="canDelete(url)" (click)="onDelete(url.id)" class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
