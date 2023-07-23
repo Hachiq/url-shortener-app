@@ -1,6 +1,6 @@
 ﻿using Api.Models;
 
-namespace Api.Services.About
+namespace Api.Services.AboutService
 {
     public class AboutService : IAboutService
     {

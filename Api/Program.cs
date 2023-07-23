@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Api.Areas.Identity.Data;
 using Api.Data;
-using Api.Services.About;
+using Api.Services.AboutService;
 using Api.Services.UrlService;
 
 var builder = WebApplication.CreateBuilder(args);
