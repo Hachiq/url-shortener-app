@@ -1,1 +1,14 @@
-<p>form works!</p>
+<div *ngIf="isAuthorizedUser()">
+    <h2>Add New URL</h2>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group row">
+            <div class="form-group col-md-10" style="margin-top: 10px;">
+                <label for="longUrl">Long URL:</label>
+                <input type="text" class="form-control" id="longUrl" name="longUrl" [(ngModel)]="newUrl.longUrl" required>
+            </div>
+            <button type="submit" class="btn btn-primary form-group col-md-2" style="margin-top: 33px; height: fit-content; ">Add URL</button>
+            <p *ngIf="error" class="text-danger">This URL already exists!</p>
+        </div>
+    </form>
+</div>

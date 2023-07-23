@@ -1,0 +1,10 @@
+.short-url-link {
+    text-decoration: none;
+    color: blue;
+    transition: color 200ms;
+  }
+  
+  .short-url-link:hover {
+    color: red;
+    cursor: pointer;
+  }
