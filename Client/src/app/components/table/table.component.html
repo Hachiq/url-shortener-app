@@ -1,0 +1,24 @@
+<div style="margin: auto; width: 1000px; margin-top: 30px;">
+
+    <app-form></app-form>
+    
+    <table class="table table-bordered table-striped text-center" style="margin-top: 20px;">
+        <caption>List of URLs</caption>
+        <thead>
+            <tr>
+                <th scope="col" style="min-width: 50px;">#</th>
+                <th scope="col">Short url</th>
+                <th scope="col" style="min-width: 130px;">Created by</th>
+                <th scope="col" style="min-width: 130px;">Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let url of urls; let i = index">
+                <th scope="row">{{getDisplayNumber(i)}}</th>
+                <td><a (click)="navigateToLongUrl(url)" target="_blank" class="short-url-link">{{url.shortUrl}}</a></td>
+                <td>{{url.createdBy}}</td>
+                <td>{{url.createdAt}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
