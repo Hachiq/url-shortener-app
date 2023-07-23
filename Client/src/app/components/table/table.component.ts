@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Url } from 'src/app/models/url';
+import { TokenService } from 'src/app/services/token.service';
 import { UrlService } from 'src/app/services/url.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { UrlService } from 'src/app/services/url.service';
 export class TableComponent {
   urls: Url[] = [];
 
-  constructor(private urlService: UrlService){}
+  constructor(private urlService: UrlService,
+    private tokenService: TokenService){}
 
   ngOnInit(): void {
     this.loadUrls();
@@ -38,5 +40,20 @@ export class TableComponent {
     this.urlService
     .deleteUrl(id)
     .subscribe(() => this.loadUrls())
+  }
+
+  canDelete(url: Url): boolean {
+    if(url.createdBy == this.tokenService.getUsernameFromToken() || this.tokenService.getRoleFromToken() == 'Administrator'){
+      return true;
+    }
+    return false;
+  }
+
+  isAuthorized(): boolean {
+    const token = localStorage.getItem('userToken')
+    if(token){
+      return true;
+    }
+    return false;
   }
 }

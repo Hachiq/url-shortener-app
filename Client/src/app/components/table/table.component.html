@@ -10,6 +10,7 @@
                 <th scope="col">Short url</th>
                 <th scope="col" style="min-width: 130px;">Created by</th>
                 <th scope="col" style="min-width: 130px;">Created at</th>
+                <th *ngIf="isAuthorized()"></th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
                 <td><a (click)="navigateToLongUrl(url)" target="_blank" class="short-url-link">{{url.shortUrl}}</a></td>
                 <td>{{url.createdBy}}</td>
                 <td>{{url.createdAt}}</td>
+                <td *ngIf="isAuthorized()"><button *ngIf="canDelete(url)" (click)="onDelete(url.id)" class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
     </table>
