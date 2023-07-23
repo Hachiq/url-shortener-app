@@ -43,7 +43,7 @@ export class TableComponent {
   }
 
   canDelete(url: Url): boolean {
-    if(url.createdBy == this.tokenService.getUsernameFromToken() || this.tokenService.getRoleFromToken() == 'Administrator'){
+    if(url.createdBy == this.tokenService.getUsernameFromToken() || this.tokenService.getRoleFromToken() == 'Admin'){
       return true;
     }
     return false;

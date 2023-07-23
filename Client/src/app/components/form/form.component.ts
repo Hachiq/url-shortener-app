@@ -55,6 +55,7 @@ constructor(private shortenerService: ShortenerService,
       this.urlAdded.emit(); // Refresh the table after adding a new URL
       this.newUrl = { id: 0, shortUrl: '', longUrl: '', createdBy: '' }; // Reset the form
     });
+    this.urls.push(this.newUrl);
     this.error = false;
   }
 }
