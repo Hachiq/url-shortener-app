@@ -30,6 +30,9 @@ export class AddSectionComponent {
             this.url.setErrors({ noCreator: true });
           }
         }
+        else if (error.status === 409) {
+          this.url.setErrors({ dublicate: true })
+        }
         else if (error.status === 401) {
           this.url.setErrors({ unauthorized: true })
         }
@@ -55,6 +58,10 @@ export class AddSectionComponent {
 
     if (this.url.hasError('noCreator')) {
       return 'Creator not specified';
+    }
+
+    if (this.url.hasError('dublicate')) {
+      return 'Such URL already exists in database';
     }
     
     return '';

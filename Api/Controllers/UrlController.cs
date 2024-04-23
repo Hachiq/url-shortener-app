@@ -41,6 +41,11 @@ namespace Api.Controllers
                 return BadRequest(new { message = "The specified URL is invalid.", reason = "InvalidUrl" });
             }
 
+            if (!await _urlRepository.UrlIsUnique(request.Url))
+            {
+                return Conflict("Such URL already exists in database.");
+            }
+
             string code = await _urlService.GenerateUniqueCode();
 
             var creator = await _userRepository.GetUserByUsernameAsync(request.Username);

@@ -24,6 +24,11 @@ namespace Api.Repositories.UrlRepository
             await _db.SaveChangesAsync();
         }
 
+        public async Task<bool> UrlIsUnique(string url)
+        {
+            return !await _db.ShortenedUrls.AnyAsync(s => s.LongUrl == url);
+        }
+
         public async Task<bool> CodeIsUnique(string code)
         {
             return !await _db.ShortenedUrls.AnyAsync(s => s.Code == code);
