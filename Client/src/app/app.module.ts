@@ -23,17 +23,27 @@ import { RegisterFormComponent } from './pages/register/register-form/register-f
 import { ShortUrlsTablePageComponent } from './pages/shortUrlsTable/short-urls-table-page/short-urls-table-page.component';
 import { ShortUrlInfoPageComponent } from './pages/shortUrlInfo/short-url-info-page/short-url-info-page.component';
 import { AboutPageComponent } from './pages/about/about-page/about-page.component';
+import { TableComponent } from './pages/shortUrlsTable/table/table.component';
+import { AddSectionComponent } from './pages/shortUrlsTable/add-section/add-section.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     HeaderComponent,
+
     LoginPageComponent,
     LoginFormComponent,
+
     RegisterPageComponent,
     RegisterFormComponent,
+
     ShortUrlsTablePageComponent,
+    TableComponent,
+    AddSectionComponent,
+
     ShortUrlInfoPageComponent,
+
     AboutPageComponent
   ],
   imports: [
