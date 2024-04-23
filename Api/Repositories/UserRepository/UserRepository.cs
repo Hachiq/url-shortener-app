@@ -21,6 +21,11 @@ namespace Api.Repositories.UserRepository
         public async Task AddUserAsync(User user)
         {
             await _db.Users.AddAsync(user);
+            await _db.UserRoles.AddAsync(new UserRole
+            {
+                UserId = user.Id,
+                RoleId = 1
+            });
             await _db.SaveChangesAsync();
         }
 
