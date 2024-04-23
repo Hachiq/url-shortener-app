@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ShortenedUrl } from 'src/app/models/shortened.url';
 import { UrlService } from 'src/app/services/url.service';
@@ -9,8 +10,11 @@ import { UrlService } from 'src/app/services/url.service';
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
+
   displayedColumns: string[] = [ 'longUrl', 'shortUrl' ];
   dataSource!: MatTableDataSource<ShortenedUrl>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private urlService: UrlService){
     this.loadUrls();
@@ -21,6 +25,7 @@ export class TableComponent {
       .get()
       .subscribe((result: ShortenedUrl[]) => { 
         this.dataSource = new MatTableDataSource<ShortenedUrl>(result);
+        this.dataSource.paginator = this.paginator;
       } 
     );
   }

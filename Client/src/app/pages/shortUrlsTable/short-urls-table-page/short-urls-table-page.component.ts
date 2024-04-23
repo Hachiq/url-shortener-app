@@ -9,5 +9,5 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ShortUrlsTablePageComponent {
 
   constructor(public authService: AuthService) { }
-  
+
 }
