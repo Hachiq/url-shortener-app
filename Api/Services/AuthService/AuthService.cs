@@ -16,13 +16,18 @@ namespace Api.Services.AuthService
             _configuration = configuration;
         }
 
-        public string CreateToken(User user)
+        public string CreateToken(User user, IEnumerable<string> roles)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username)
             };
+
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(

@@ -59,7 +59,9 @@ namespace Api.Controllers
                 return BadRequest("User not found or wrong password.");
             }
 
-            string token = _authService.CreateToken(user);
+            var roles = await _userRepository.GetUserRolesByUserIdAsync(user.Id);
+            string token = _authService.CreateToken(user, roles);
+
             return Ok(token);
         }
     }

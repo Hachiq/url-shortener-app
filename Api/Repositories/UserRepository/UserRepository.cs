@@ -23,5 +23,15 @@ namespace Api.Repositories.UserRepository
             await _db.Users.AddAsync(user);
             await _db.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<string>> GetUserRolesByUserIdAsync(Guid id)
+        {
+            var user = await _db.Users
+                .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            return user?.UserRoles.Select(ur => ur.Role.Name) ?? Enumerable.Empty<string>();
+        }
     }
 }

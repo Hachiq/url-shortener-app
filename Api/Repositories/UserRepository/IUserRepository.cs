@@ -6,5 +6,6 @@ namespace Api.Repositories.UserRepository
     {
         Task<User> GetUserByUsernameAsync(string username);
         Task AddUserAsync(User user);
+        Task<IEnumerable<string>> GetUserRolesByUserIdAsync(Guid id);
     }
 }
