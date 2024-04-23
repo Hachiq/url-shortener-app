@@ -1,6 +1,8 @@
 using Api.Data;
+using Api.Repositories.UrlRepository;
 using Api.Repositories.UserRepository;
 using Api.Services.AuthService;
+using Api.Services.UrlService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -24,6 +26,9 @@ namespace Api
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddTransient<IAuthService, AuthService>();
+
+            builder.Services.AddScoped<IUrlRepository, UrlRepository>();
+            builder.Services.AddTransient<IUrlService, UrlService>();
 
             builder.Services.AddControllers();
 
