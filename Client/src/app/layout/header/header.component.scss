@@ -1,0 +1,17 @@
+.main-spacer {
+    flex: 1 1 auto;
+}
+.secondary-spacer {
+    margin-right: 20px;
+}
+a {
+    text-decoration: none;
+    color: gray;
+    transition: 200ms;
+}
+
+a:hover {
+    color: goldenrod;
+    transition: 200ms;
+    cursor: pointer;
+}
