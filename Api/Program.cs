@@ -1,4 +1,6 @@
 using Api.Data;
+using Api.Repositories.UserRepository;
+using Api.Services.AuthService;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api
@@ -16,6 +18,9 @@ namespace Api
             // Add services to the container.
 
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(appConnectionString));
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
 
             builder.Services.AddControllers();
 
