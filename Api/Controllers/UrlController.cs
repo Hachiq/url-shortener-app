@@ -38,7 +38,7 @@ namespace Api.Controllers
         {
             if (!Uri.TryCreate(request.Url, UriKind.Absolute, out _))
             {
-                return BadRequest("The specified URL is invalid.");
+                return BadRequest(new { message = "The specified URL is invalid.", reason = "InvalidUrl" });
             }
 
             string code = await _urlService.GenerateUniqueCode();
@@ -46,7 +46,7 @@ namespace Api.Controllers
             var creator = await _userRepository.GetUserByUsernameAsync(request.Username);
             if (creator is null)
             {
-                return BadRequest("Creator not specified.");
+                return BadRequest(new { message = "Creator not specified.", reason = "NoCreator" });
             }
 
             var httpRequest = HttpContext.Request;

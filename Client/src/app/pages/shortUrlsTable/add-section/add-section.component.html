@@ -1,1 +1,18 @@
-<p>add-section works!</p>
+<p class="form-title">Enter URL to shorten</p>
+<div class="form-control-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Long URL</mat-label>
+        <input matInput placeholder="URL" [formControl]="url" required>
+        @if (url.invalid) {
+            <mat-error>{{getUrlErrorMessage()}}</mat-error>
+        }
+    </mat-form-field>
+</div>
+<button 
+    class="shortenButton" 
+    mat-raised-button color="primary"
+    (click)="shorten()"
+    [disabled]="url.invalid"
+>
+    Shorten
+</button>

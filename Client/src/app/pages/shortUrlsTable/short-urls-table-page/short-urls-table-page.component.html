@@ -1,4 +1,4 @@
 <div class="container">
-    <app-add-section></app-add-section>
+    <app-add-section *ngIf="authService.isLoggedIn()"></app-add-section>
     <app-table></app-table>
 </div>
