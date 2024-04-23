@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.Mappers;
 using Api.Repositories.UrlRepository;
 using Api.Repositories.UserRepository;
 using Api.Services.AuthService;
@@ -29,6 +30,8 @@ namespace Api
 
             builder.Services.AddScoped<IUrlRepository, UrlRepository>();
             builder.Services.AddTransient<IUrlService, UrlService>();
+
+            builder.Services.AddTransient<UrlMapper>();
 
             builder.Services.AddControllers();
 

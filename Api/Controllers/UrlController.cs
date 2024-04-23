@@ -1,4 +1,5 @@
 ﻿using Api.DTOs;
+using Api.Mappers;
 using Api.Models;
 using Api.Repositories.UrlRepository;
 using Api.Repositories.UserRepository;
@@ -16,18 +17,20 @@ namespace Api.Controllers
         private readonly IUrlRepository _urlRepository;
         private readonly IUrlService _urlService;
         private readonly IUserRepository _userRepository;
+        private readonly UrlMapper _mapper;
 
-        public UrlController(IUrlRepository urlRepository, IUrlService urlService, IUserRepository userRepository)
+        public UrlController(IUrlRepository urlRepository, IUrlService urlService, IUserRepository userRepository, UrlMapper mapper)
         {
             _urlRepository = urlRepository;
             _urlService = urlService;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("all")]
         public async Task<ActionResult<List<ShortenedUrl>>> Get()
         {
-            return Ok(await _urlRepository.GetAllAsync());
+            return Ok(_mapper.MapUrlListToDtoList(await _urlRepository.GetAllAsync()));
         }
 
         [HttpPost("shorten")]
