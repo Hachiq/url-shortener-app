@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -50,7 +51,12 @@ import { AboutPageComponent } from './pages/about/about-page/about-page.componen
     MatTableModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
