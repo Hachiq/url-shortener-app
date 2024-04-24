@@ -4,6 +4,7 @@ using Api.Models;
 using Api.Repositories.UrlRepository;
 using Api.Repositories.UserRepository;
 using Api.Services.UrlService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
@@ -33,6 +34,7 @@ namespace Api.Controllers
             return Ok(_mapper.MapUrlListToDtoList(await _urlRepository.GetAllAsync()));
         }
 
+        [Authorize(Roles = "User, Admin")]
         [HttpPost("shorten")]
         public async Task<ActionResult> ShortenUrl(UrlShorteningRequestDto request)
         {
@@ -69,6 +71,19 @@ namespace Api.Controllers
             await _urlRepository.AddAsync(shortenedUrl);
 
             return Ok(shortenedUrl.ShortUrl);
+        }
+
+        [Authorize(Roles = "User, Admin")]
+        [HttpDelete("{id}/delete")]
+        public async Task<ActionResult> Delete(string id)
+        {
+            var shortenedUrl = await _urlRepository.FindByIdAsync(id);
+            if (shortenedUrl is null)
+            {
+                return BadRequest();
+            }
+            await _urlRepository.DeleteAsync(shortenedUrl);
+            return NoContent();
         }
     }
 }

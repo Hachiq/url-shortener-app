@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/services/token.service';
 import { UrlService } from 'src/app/services/url.service';
@@ -18,7 +18,7 @@ export class AddSectionComponent {
     this.urlService.shorten({
       url: this.url.value,
       username: this.tokenService.getUsernameFromToken()
-    }).subscribe(() => { },
+    }).subscribe(() => {  },
       (error) => {
         if (error.status === 400){
           const reason = error.error.reason;

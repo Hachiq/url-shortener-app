@@ -31,8 +31,10 @@ namespace Api.Mappers
 
             return new ShortenedUrlDto
             {
+                Id = url.Id.ToString(),
                 LongUrl = url.LongUrl,
-                ShortUrl = url.ShortUrl
+                ShortUrl = url.ShortUrl,
+                Creator = url.Creator.Username
             };
         }
         public List<ShortenedUrlDto> MapUrlListToDtoList(List<ShortenedUrl> urls)

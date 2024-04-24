@@ -4,5 +4,27 @@
 }
 
 .mat-column-longUrl {
-    width: 80%;
+    width: 65%;
+}
+
+.mat-column-shortUrl {
+    width: 27%;
+}
+
+.mat-column-delete {
+    width: 8%;
+}
+
+a {
+    text-decoration: none;
+    opacity: 80%;
+}
+
+a:hover {
+    opacity: 100%;
+    cursor: pointer;
+}
+
+.delete-link {
+    color: red;
 }

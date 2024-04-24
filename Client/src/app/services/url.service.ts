@@ -24,4 +24,10 @@ export class UrlService {
       url
     );
   }
+
+  public delete(id: string): Observable<any> {
+    return this.http.delete<any>(
+      `${environment.apiUrl}/Url/${id}/delete`
+    );
+  }
 }
