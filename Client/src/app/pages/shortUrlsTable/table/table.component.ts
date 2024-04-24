@@ -31,6 +31,10 @@ export class TableComponent {
     );
   }
 
+  navigateToLongUrl(url: ShortenedUrl): void {
+    window.location.href = url.longUrl;
+  }
+
   delete(id: string) {
     this.urlService
       .delete(id)
