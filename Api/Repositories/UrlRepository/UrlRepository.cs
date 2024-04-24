@@ -32,7 +32,7 @@ namespace Api.Repositories.UrlRepository
 
         public async Task<ShortenedUrl> FindByIdAsync(string id)
         {
-            return await _db.ShortenedUrls.FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
+            return await _db.ShortenedUrls.Include(u => u.Creator).FirstOrDefaultAsync(u => u.Id == Guid.Parse(id));
         }
 
         public async Task<ShortenedUrl> FindByShortUrlAsync(string url)

@@ -34,6 +34,13 @@ namespace Api.Controllers
             return Ok(_mapper.MapUrlListToDtoList(await _urlRepository.GetAllAsync()));
         }
 
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<ShortenedUrl>>> GetById(string id)
+        {
+            return Ok(_mapper.MapShortenedUrlDetailsToDto(await _urlRepository.FindByIdAsync(id)));
+        }
+
         [Authorize(Roles = "User, Admin")]
         [HttpPost("shorten")]
         public async Task<ActionResult> ShortenUrl(UrlShorteningRequestDto request)

@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -22,10 +23,11 @@ import { LoginPageComponent } from './pages/login/login-page/login-page.componen
 import { RegisterPageComponent } from './pages/register/register-page/register-page.component';
 import { RegisterFormComponent } from './pages/register/register-form/register-form.component';
 import { ShortUrlsTablePageComponent } from './pages/shortUrlsTable/short-urls-table-page/short-urls-table-page.component';
-import { ShortUrlInfoPageComponent } from './pages/shortUrlInfo/short-url-info-page/short-url-info-page.component';
-import { AboutPageComponent } from './pages/about/about-page/about-page.component';
 import { TableComponent } from './pages/shortUrlsTable/table/table.component';
 import { AddSectionComponent } from './pages/shortUrlsTable/add-section/add-section.component';
+import { ShortUrlInfoPageComponent } from './pages/shortUrlInfo/short-url-info-page/short-url-info-page.component';
+import { DetailsCardComponent } from './pages/shortUrlInfo/details-card/details-card.component';
+import { AboutPageComponent } from './pages/about/about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { AddSectionComponent } from './pages/shortUrlsTable/add-section/add-sect
     AddSectionComponent,
 
     ShortUrlInfoPageComponent,
+    DetailsCardComponent,
 
     AboutPageComponent
   ],
@@ -60,7 +63,8 @@ import { AddSectionComponent } from './pages/shortUrlsTable/add-section/add-sect
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync(),
