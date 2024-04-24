@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShortenedUrlDetails } from 'src/app/models/shortened.url.details';
@@ -13,7 +14,7 @@ export class DetailsCardComponent {
 
   shortenedUrl!: ShortenedUrlDetails;
 
-  constructor (private route: ActivatedRoute, private urlService: UrlService) {
+  constructor (private route: ActivatedRoute, private urlService: UrlService, public datePipe: DatePipe) {
     route.params.subscribe(params => {
       this.urlId = params['id'];
     });

@@ -25,7 +25,7 @@
       </div>
       <div class="info-row">
         <span class="info-label">Creted on:</span>
-        <span class="info-value">{{ shortenedUrl.createdOn }}</span>
+        <span class="info-value">{{ datePipe.transform(shortenedUrl.createdOn, 'medium') }}</span>
       </div>
     </mat-card-content>
 </mat-card>
