@@ -2,7 +2,7 @@
     <mat-card-header>
       <mat-card-title>Short URL Information</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
+    <mat-card-content *ngIf="shortenedUrl">
       <div class="info-row">
         <span class="info-label">ID:</span>
         <span class="info-value">{{ shortenedUrl.id }}</span>
