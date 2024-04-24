@@ -7,6 +7,7 @@ using Api.Services.UrlService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Net.Http;
 
 namespace Api.Controllers
@@ -91,6 +92,19 @@ namespace Api.Controllers
             }
             await _urlRepository.DeleteAsync(shortenedUrl);
             return NoContent();
+        }
+
+
+        // Does not work because of the CORS issues. Should be rethinked.
+        [HttpGet("{id}/navigate")]
+        public async Task<ActionResult> Navigate(string id)
+        {
+            var shortenedUrl = await _urlRepository.FindByIdAsync(id);
+            if (shortenedUrl is null)
+            {
+                return BadRequest();
+            }
+            return Redirect(shortenedUrl.LongUrl);
         }
     }
 }
